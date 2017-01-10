@@ -17,7 +17,4 @@ public class AppRestfulResource extends Application{
 		classes.add(UserResource.class);
 		return classes;
 	}
-	
-	
-
 }
