@@ -1,2 +1,6 @@
 require('./main.scss');
-var $ = require('jquery');
+require('./header.js');
+require('./footer.js');
+
+
+
