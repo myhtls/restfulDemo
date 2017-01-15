@@ -8,6 +8,6 @@ import javax.ws.rs.Produces;
 public class UserResource {
 	@GET
 	public String getUserInfo(){
-		return "hello ";
+		return "雾神带我飞";
 	}
 }
