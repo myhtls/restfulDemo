@@ -36,23 +36,23 @@
 
 	</dependencies>
 	
-	<profiles>
+  	<profiles>
 		<profile>
 			<id>dev</id>
 			<properties>
-				<db.driver>com.mysql.jdbc.Driver</db.driver>
-				<db.url>jdbc:mysql://localhost:3306/demo</db.url>
-				<db.username>root</db.username>
-				<db.password>root</db.password>
+				<package.environment>dev</package.environment>
 			</properties>
 		</profile>
 		<profile>
 			<id>test</id>
 			<properties>
-				<db.driver>com.mysql.jdbc.Driver</db.driver>
-				<db.url>jdbc:mysql://localhost:3306/sakila</db.url>
-				<db.username>root</db.username>
-				<db.password>root</db.password>
+				<package.environment>test</package.environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>pro</id>
+			<properties>
+				<package.environment>pro</package.environment>
 			</properties>
 		</profile>
 	</profiles>
@@ -60,16 +60,15 @@
 	<build>
 		<resources>
 			<resource>
-				<directory>${project.basedir}/src/main/resources</directory>
+				<directory>src/main/resources/</directory>
 				<filtering>true</filtering>
+				<excludes>
+					<exclude>dev/*</exclude>
+					<exclude>test/*</exclude>
+					<exclude>pro/*</exclude>
+				</excludes>
 			</resource>
 		</resources>
-		<testResources>
-			<testResource>
-				<directory>${project.basedir}/src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
 
 		<plugins>
 			<plugin>
@@ -87,6 +86,47 @@
 				<version>2.3</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<webResources>
+						<resource>
+							<directory>src/main/resources</directory>
+							<targetPath>WEB-INF/classes</targetPath>
+							<filtering>true</filtering>
+						</resource>
+						<resource>
+							<directory>src/main/resources-profile/${package.environment}/config</directory>
+							<targetPath>WEB-INF/classes</targetPath>
+							<filtering>true</filtering>
+							<includes>
+								<!-- logback.xml 文件默认路径在classpath下 -->
+								<include>**/logback.xml</include>
+							</includes>
+						</resource>
+						<resource>
+							<directory>src/main/resources-profile/${package.environment}/config</directory>
+							<targetPath>WEB-INF/config</targetPath>
+							<filtering>true</filtering>
+							<includes>
+								<include>**/*.properties</include>
+								<include>**/*.xml</include>
+							</includes>
+						</resource>
+						<resource>
+							<directory>src/main/resources-profile/${package.environment}</directory>
+							<targetPath>/</targetPath>
+							<filtering>true</filtering>
+							<includes>
+								<include>**/*.js</include>
+							</includes>
+						</resource>
+						<resource>
+							<directory>src/main/resources-profile/${package.environment}/web</directory>
+							<targetPath>WEB-INF</targetPath>
+							<filtering>true</filtering>
+							<includes>
+								<include>**/*.xml</include>
+							</includes>
+						</resource>
+					</webResources>
 				</configuration>
 			</plugin>
 
