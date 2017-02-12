@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
  */
 public class ConfigUtil {
 
-	private static final ResourceBundle bundle = java.util.ResourceBundle.getBundle("service.properties");
+	private static final ResourceBundle bundle = java.util.ResourceBundle.getBundle("/config/service.properties");
 
 	/**
 	 * 通过键获取值
@@ -20,6 +20,9 @@ public class ConfigUtil {
 	 */
 	public static final String get(String key) {
 		return bundle.getString(key);
+	}
+	
+	public static void main(String[] args) {
 	}
 
 }
