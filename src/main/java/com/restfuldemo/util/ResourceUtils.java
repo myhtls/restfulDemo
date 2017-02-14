@@ -48,6 +48,7 @@ public class ResourceUtils {
 	}
 
 	public static String getPath(String resource) {
+		logger.info(" ========= resource = " + resource ) ;
 		return Thread.currentThread().getContextClassLoader().getResource(resource).getPath();
 	}
 

@@ -1,7 +1,5 @@
 package com.restfuldemo.util ;
 
-import java.util.ResourceBundle;
-
 /**
  * 项目参数工具类
  * 
@@ -10,7 +8,7 @@ import java.util.ResourceBundle;
  */
 public class ConfigUtil {
 
-	private static final ResourceBundle bundle = java.util.ResourceBundle.getBundle("/config/service.properties");
+//	private static final Properties props = ResourceUtils.asProps("WEB-INF/config/service.properties");
 
 	/**
 	 * 通过键获取值
@@ -19,7 +17,8 @@ public class ConfigUtil {
 	 * @return
 	 */
 	public static final String get(String key) {
-		return bundle.getString(key);
+//		return props.getProperty(key) ;
+		return null ;
 	}
 	
 	public static void main(String[] args) {
