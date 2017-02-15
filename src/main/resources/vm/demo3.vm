@@ -1,0 +1,12 @@
+select 
+	city_id,
+	city,
+	country_id,
+	last_update
+from city t
+where
+	1=1
+	#if($city.getCity_id()) and t.city_id = :city_id #end
+	#if($city.getCity()) and t.city = :city #end
+	#if($city.getCountry_id()) and t.country_id = :country_id #end
+order by last_update desc
